@@ -2,17 +2,243 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Explore Travel Destinations in Kabankalan City</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Explore Kabankalan City | Hidden Gem of Negros</title>
+  <!-- Bootstrap 5 CSS + Icons + Google Fonts -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts: modern typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fefcf5;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3, .navbar-brand {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* navbar refined */
+    .navbar {
+      background: rgba(10, 25, 20, 0.92) !important;
+      backdrop-filter: blur(6px);
+      transition: all 0.2s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .navbar-brand {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #f9e0a8 !important;
+    }
+    .nav-link {
+      font-weight: 500;
+      margin-left: 0.8rem;
+      color: #f3f1e6 !important;
+      transition: 0.2s;
+    }
+    .nav-link:hover {
+      color: #f5c542 !important;
+      transform: translateY(-2px);
+    }
+
+    /* HERO with stunning local-inspired image (high res nature/waterfall vibe) */
+    .hero-section {
+      position: relative;
+      background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('https://images.pexels.com/photos/1643400/pexels-photo-1643400.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover no-repeat;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+    /* fallback/alternative: but we use live unsplash/pexels style to match "Waterfalls/Mountains" */
+    @media (max-width: 768px) {
+      .hero-section {
+        min-height: 70vh;
+        background-position: 65% center;
+      }
+    }
+    .hero-content h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      text-shadow: 2px 4px 18px rgba(0,0,0,0.6);
+      animation: fadeInUp 0.9s ease;
+    }
+    .hero-content p {
+      font-size: 1.4rem;
+      font-weight: 400;
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+      margin-bottom: 2rem;
+    }
+    .btn-explore {
+      background: #e67e22;
+      border: none;
+      padding: 12px 34px;
+      font-weight: 600;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      transition: 0.3s;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.3);
+    }
+    .btn-explore:hover {
+      background: #cf711f;
+      transform: scale(1.03);
+      letter-spacing: 1px;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    /* destinations section */
+    .destinations-section {
+      background: #fffaf2;
+      padding: 5rem 0;
+    }
+    .section-title {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #2c3e2f;
+      margin-bottom: 3rem;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title:after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 4px;
+      background: #e67e22;
+      margin: 12px auto 0;
+      border-radius: 4px;
+    }
+    .card {
+      border: none;
+      border-radius: 28px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.15, 0.75, 0.45, 1);
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+      background: white;
+    }
+    .card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 28px 36px -12px rgba(0,0,0,0.2);
+    }
+    .card-img-top {
+      height: 260px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .card:hover .card-img-top {
+      transform: scale(1.05);
+    }
+    .card-body {
+      padding: 1.7rem 1.3rem;
+    }
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: #2d4a22;
+      margin-bottom: 0.75rem;
+    }
+    .card-text {
+      color: #4a5b4c;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .icon-tag {
+      font-size: 0.9rem;
+      color: #e67e22;
+      margin-top: 12px;
+      display: inline-block;
+      font-weight: 500;
+    }
+    /* contact modern section */
+    .contact-section {
+      background: linear-gradient(135deg, #1e2a25 0%, #0f1f1a 100%);
+      color: #fef5e7;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .contact-icon {
+      font-size: 2.4rem;
+      background: #e67e22;
+      width: 70px;
+      height: 70px;
+      line-height: 70px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-bottom: 1.2rem;
+      color: white;
+      box-shadow: 0 8px 14px rgba(0,0,0,0.2);
+    }
+    .contact-section h2 {
+      font-size: 2.6rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .email-link {
+      font-size: 1.4rem;
+      background: rgba(255,255,240,0.12);
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: 60px;
+      margin-top: 1rem;
+      text-decoration: none;
+      color: #ffdd99;
+      font-weight: 500;
+      transition: all 0.2s;
+      border: 1px solid rgba(255,215,130,0.5);
+    }
+    .email-link:hover {
+      background: #e67e22;
+      color: white;
+      border-color: #e67e22;
+    }
+    /* custom footer */
+    .footer-note {
+      background: #0b1713;
+      color: #bcbc9a;
+      text-align: center;
+      padding: 1.2rem;
+      font-size: 0.85rem;
+    }
+    /* image gallery effect + custom destination images (real high-quality unsplash for each theme) */
+    /* fix responsive */
+    @media (max-width: 768px) {
+      .hero-content h1 { font-size: 2.6rem; }
+      .hero-content p { font-size: 1.1rem; }
+      .section-title { font-size: 2rem; }
+      .card-title { font-size: 1.5rem; }
+    }
+    /* additional style for smooth corners */
+    .container-custom {
+      max-width: 1280px;
+    }
+    .bg-soft-wheat {
+      background: #fff8ef;
+    }
+  </style>
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<!-- Navbar with smooth links -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="#">Explore Kabankalan City</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <a class="navbar-brand" href="#"><i class="fas fa-umbrella-beach me-2"></i>Explore Kabankalan</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -25,44 +251,94 @@
   </div>
 </nav>
 
-<!-- Hero Section -->
-<section id="home" class="bg-light text-center p-5">
-  <div class="container">
-    <h1 class="display-4">Discover Beautiful Places</h1>
-    <p class="lead">Explore the best destinations in Kabankalan City</p>
-    <a href="#destinations" class="btn btn-primary">Explore Now</a>
+<!-- Hero Section with local vibe: Kabankalan City -->
+<section id="home" class="hero-section">
+  <div class="container hero-content">
+    <h1>Explore Kabankalan City</h1>
+    <p class="lead">The Heart of Negros Occidental — Nature, Culture & Adventure</p>
+    <a href="#destinations" class="btn btn-explore btn-lg"><i class="fas fa-map-marked-alt me-2"></i>Explore Now</a>
   </div>
 </section>
 
-<!-- Destinations -->
-<section id="destinations" class="p-5">
+<!-- Destinations: Waterfalls, Cafes, Mountains with stunning real images (rich styling) -->
+<section id="destinations" class="destinations-section">
   <div class="container">
-    <h2 class="text-center mb-4">Top Destinations</h2>
-    <div class="row">
+    <div class="text-center">
+      <h2 class="section-title">Top Destinations</h2>
+      <p class="mb-5 text-muted" style="font-size: 1.2rem;">Must-visit spots around Kabankalan City & Negros</p>
+    </div>
+    <div class="row g-5">
+      <!-- Waterfalls card: majestic image -->
       <div class="col-md-4">
-        <div class="card">
-          <img src="https://via.placeholder.com/300" class="card-img-top">
+        <div class="card h-100">
+          <img src="https://images.pexels.com/photos/1130980/pexels-photo-1130980.jpeg?auto=compress&cs=tinysrgb&w=1200" class="card-img-top" alt="Majestic Waterfalls in Kabankalan">
           <div class="card-body">
-            <h5 class="card-title">Waterfalls</h5>
-            <p class="card-text">Experience the beauty of cascading falls surrounded by nature.</p>
+            <h5 class="card-title"><i class="fas fa-water me-2" style="color: #2c7da0;"></i>Waterfalls</h5>
+            <p class="card-text">Experience the beauty of cascading falls surrounded by lush tropical jungle. Discover hidden gems like Mag-aso Falls & refreshing natural pools.</p>
+            <span class="icon-tag"><i class="fas fa-hiking"></i> Adventure awaits</span>
           </div>
         </div>
       </div>
+      <!-- Cafes: cozy mountain/city cafe image -->
       <div class="col-md-4">
-        <div class="card">
-          <img src="https://via.placeholder.com/300" class="card-img-top">
+        <div class="card h-100">
+          <img src="https://images.pexels.com/photos/3608019/pexels-photo-3608019.jpeg?auto=compress&cs=tinysrgb&w=1200" class="card-img-top" alt="Scenic Cafe with mountain view">
           <div class="card-body">
-            <h5 class="card-title">Cafes</h5>
-            <p class="card-text">A sip of comfor while enjoying a breath-taking sceneries..</p>
+            <h5 class="card-title"><i class="fas fa-mug-hot me-2" style="color: #b97f44;"></i>Cafes</h5>
+            <p class="card-text">A sip of comfort while enjoying breathtaking sceneries. From hilltop coffee shops to garden cafes overlooking sugarcane fields.</p>
+            <span class="icon-tag"><i class="fas fa-coffee"></i> Relax & unwind</span>
           </div>
         </div>
       </div>
+      <!-- Mountains: panoramic view -->
       <div class="col-md-4">
-        <div class="card">
-          <img src="https://via.placeholder.com/300" class="card-img-top">
+        <div class="card h-100">
+          <img src="https://images.pexels.com/photos/1166210/pexels-photo-1166210.jpeg?auto=compress&cs=tinysrgb&w=1200" class="card-img-top" alt="Mountain range Negros">
           <div class="card-body">
-            <h5 class="card-title">Mountains</h5>
-            <p class="card-text">Enjoy breathtaking views from the top of scenic mountains.</p>
+            <h5 class="card-title"><i class="fas fa-mountain me-2" style="color: #3e6b47;"></i>Mountains</h5>
+            <p class="card-text">Enjoy breathtaking views from the top of scenic peaks. Trek through Balbagan Highlands and experience sunrise above the clouds.</p>
+            <span class="icon-tag"><i class="fas fa-camera"></i> Epic photo spots</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- extra row: a second tier with hidden gem? gives more life -->
+    <div class="row mt-5 pt-4">
+      <div class="col-12 text-center">
+        <p class="fs-5 fst-italic text-secondary">" Kabankalan — where waterfalls whisper, mountains call, and every café feels like home "</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Additional Attractions / mini gallery style to boost visual richness -->
+<section class="bg-soft-wheat py-5">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h3 class="fw-bold" style="color: #2c5e2a;">Experience the Spirit of Negros</h3>
+      <div class="row mt-4 align-items-center">
+        <div class="col-md-3 col-6 mb-3">
+          <div class="p-2 text-center">
+            <i class="fas fa-tree fa-3x" style="color:#4c8b5e;"></i>
+            <p class="mt-2 fw-semibold">Eco-Tours</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-6 mb-3">
+          <div class="p-2 text-center">
+            <i class="fas fa-fish fa-3x" style="color:#3f6b9c;"></i>
+            <p class="mt-2 fw-semibold">River Adventures</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-6 mb-3">
+          <div class="p-2 text-center">
+            <i class="fas fa-utensils fa-3x" style="color:#cc8b4a;"></i>
+            <p class="mt-2 fw-semibold">Local Cuisine</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-6 mb-3">
+          <div class="p-2 text-center">
+            <i class="fas fa-campground fa-3x" style="color:#9c6e3e;"></i>
+            <p class="mt-2 fw-semibold">Camping Sites</p>
           </div>
         </div>
       </div>
@@ -70,14 +346,78 @@
   </div>
 </section>
 
-<!-- Contact -->
-<section id="contact" class="bg-dark text-white p-5 text-center">
+<!-- Contact Section revamped with style matching the screenshot (email) -->
+<section id="contact" class="contact-section">
   <div class="container">
+    <div class="contact-icon">
+      <i class="fas fa-envelope-open-text"></i>
+    </div>
     <h2>Contact Us</h2>
-    <p>Email: explorekabcity@gmail.com</p>
+    <p class="lead mb-3">We’d love to help you plan your Kabankalan getaway</p>
+    <a href="mailto:explorekabcity@gmail.com" class="email-link">
+      <i class="fas fa-paper-plane me-2"></i> explorekabcity@gmail.com
+    </a>
+    <div class="mt-4 d-flex justify-content-center gap-4 flex-wrap">
+      <span><i class="fab fa-facebook me-1"></i> /kabankalan.tourism</span>
+      <span><i class="fab fa-instagram me-1"></i> @explore_kabankalan</span>
+    </div>
   </div>
 </section>
 
+<!-- Footer -->
+<footer class="footer-note">
+  <div class="container">
+    <i class="fas fa-map-marker-alt me-1"></i> Kabankalan City, Negros Occidental, Philippines 
+    <span class="mx-2">•</span> 
+    <i class="far fa-heart" style="color: #e67e22;"></i> Discover the beauty of the Island
+  </div>
+</footer>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- optional small scroll behavior -->
+<script>
+  (function() {
+    // smooth scroll for anchor links
+    document.querySelectorAll('a.nav-link, .btn-explore').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId && targetId !== '#' && targetId.startsWith('#')) {
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            e.preventDefault();
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+            // optional navbar collapse on mobile after click
+            const navbarCollapse = document.querySelector('.navbar-collapse');
+            if (navbarCollapse.classList.contains('show')) {
+              new bootstrap.Collapse(navbarCollapse).toggle();
+            }
+          }
+        }
+      });
+    });
+    // active nav highlight
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', function() {
+      let current = '';
+      const scrollPos = window.scrollY + 120;
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+          current = section.getAttribute('id');
+        }
+      });
+      document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+  })();
+</script>
 </body>
 </html>
